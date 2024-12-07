@@ -42,14 +42,18 @@ fn possibly_true1(node: &mut EquationNode, ) -> bool {
         return true;
     }
 
-    node.current_sum = add_sum;
-    if possibly_true1(&mut node.clone()) {
-        return true;
+    if add_sum < node.target_sum {
+        node.current_sum = add_sum;
+        if possibly_true1(&mut node.clone()) {
+            return true;
+        }
     }
 
-    node.current_sum = mul_sum;
-    if possibly_true1(&mut node.clone()) {
-        return true;
+    if mul_sum < node.target_sum {
+        node.current_sum = mul_sum;
+        if possibly_true1(&mut node.clone()) {
+            return true;
+        }
     }
 
     false
@@ -71,19 +75,25 @@ fn possibly_true2(node: &mut EquationNode, ) -> bool {
         return true;
     }
 
-    node.current_sum = add_sum;
-    if possibly_true2(&mut node.clone()) {
-        return true;
+    if add_sum < node.target_sum {
+        node.current_sum = add_sum;
+        if possibly_true2(&mut node.clone()) {
+            return true;
+        }
     }
 
-    node.current_sum = mul_sum;
-    if possibly_true2(&mut node.clone()) {
-        return true;
+    if mul_sum < node.target_sum {
+        node.current_sum = mul_sum;
+        if possibly_true2(&mut node.clone()) {
+            return true;
+        }
     }
 
-    node.current_sum = con_sum;
-    if possibly_true2(&mut node.clone()) {
-        return true;
+    if con_sum < node.target_sum {
+        node.current_sum = con_sum;
+        if possibly_true2(&mut node.clone()) {
+            return true;
+        }
     }
 
     false
